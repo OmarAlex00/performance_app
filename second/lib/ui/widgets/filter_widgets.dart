@@ -14,6 +14,14 @@ class FilterWidgets extends StatefulWidget {
 }
 
 class _FilterWidgetsState extends State<FilterWidgets> {
+  @override
+  void dispose() {
+    min.dispose();
+    max.dispose();
+    category.dispose();
+    super.dispose();
+  }
+
   final TextEditingController min = TextEditingController();
   final TextEditingController max = TextEditingController();
   final TextEditingController category = TextEditingController();
