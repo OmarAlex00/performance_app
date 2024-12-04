@@ -1,31 +1,9 @@
-import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:first/animated_box.dart';
 import 'package:flutter/material.dart';
 
-class DebuggingTask extends StatefulWidget {
+class DebuggingTask extends StatelessWidget {
   const DebuggingTask({super.key});
-
-  @override
-  _DebuggingTaskState createState() => _DebuggingTaskState();
-}
-
-class _DebuggingTaskState extends State<DebuggingTask> {
-  late Timer _timer;
-  int _counter = 0;
-  @override
-  void initState() {
-    super.initState();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        _counter++;
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,23 +24,9 @@ class _DebuggingTaskState extends State<DebuggingTask> {
               ),
             ),
           ),
-          RepaintBoundary(
-            child: AnimatedContainer(
-              duration: const Duration(seconds: 1),
-              height: _counter % 2 == 0 ? 100 : 200,
-              width: _counter % 2 == 0 ? 100 : 200,
-              color: Colors.blue,
-            ),
-          ),
+          const RepaintBoundary(child: AnimatedBoxcustom()),
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-// Forgot to cancel the Timer
-    super.dispose();
   }
 }
